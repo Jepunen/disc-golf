@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DiscGolf" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DiscGolf" parent="Theme.Material3.Dark">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,6 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:fontFamily">@font/mukta_regular</item>
+        <item name="fontFamily">@font/mukta_regular</item>
+
     </style>
 
     <style name="Theme.DiscGolf.NoActionBar">
