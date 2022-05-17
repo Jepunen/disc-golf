@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:textViewStyle">@font/mukta_medium</item>
+        <item name="android:buttonStyle">@font/mukta_medium</item>
+
     </style>
 </resources>

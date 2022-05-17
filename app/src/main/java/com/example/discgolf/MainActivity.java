@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Button;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,23 +17,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Load home fragment
+        getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).commit();
 
-        Button btn = findViewById(R.id.button);
+        setTitle("Home");
+    }
 
-        btn.setOnClickListener(view -> {
+    @Override
+    public void onBackPressed() {
+        goToFragment(new HomeFragment());
+    }
 
-            goToFragment(new NewRound());
-
-        });
+    public void setTitle(String title) {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
 
     public void goToFragment(Fragment fragment) {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
-
     }
-
 }
