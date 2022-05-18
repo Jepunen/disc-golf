@@ -43,15 +43,18 @@
                 android:text="E"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/fairway_p_1_score_add"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_1_score_remove"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.479" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fairway_p_1_score_remove"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:src="@drawable/remove_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fairway_p_1_name"
@@ -59,11 +62,13 @@
                 app:layout_constraintVertical_bias="0.51" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/fairway_p_1_score_add"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/add_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -97,15 +102,17 @@
                 android:text="E"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/fairway_p_2_score_add"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_2_score_remove"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fairway_p_2_score_remove"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:src="@drawable/remove_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fairway_p_2_name"
@@ -113,11 +120,13 @@
                 app:layout_constraintVertical_bias="0.51" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/fairway_p_2_score_add"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/add_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -151,15 +160,17 @@
                 android:text="E"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/fairway_p_3_score_add"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_3_score_remove"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fairway_p_3_score_remove"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:src="@drawable/remove_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fairway_p_3_name"
@@ -167,11 +178,13 @@
                 app:layout_constraintVertical_bias="0.491" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/fairway_p_3_score_add"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/add_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -205,15 +218,17 @@
                 android:text="E"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/fairway_p_4_score_add"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_4_score_remove"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fairway_p_4_score_remove"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:src="@drawable/remove_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fairway_p_4_name"
@@ -221,11 +236,13 @@
                 app:layout_constraintVertical_bias="0.491" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/fairway_p_4_score_add"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/add_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -261,15 +278,17 @@
                 android:text="E"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/fairway_p_5_score_add"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_5_score_remove"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fairway_p_5_score_remove"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:src="@drawable/remove_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fairway_p_5_name"
@@ -277,11 +296,13 @@
                 app:layout_constraintVertical_bias="0.491" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/fairway_p_5_score_add"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/add_icon"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
