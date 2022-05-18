@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/fairway_p_1_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Player 1"
@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/fairway_p_1_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E"
@@ -51,13 +51,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="104dp"
                 android:src="@drawable/remove_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_1_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.491" />
+                app:layout_constraintVertical_bias="0.51" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -80,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fairway_p_1">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/fairway_p_2_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Player 2"
@@ -92,7 +91,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/fairway_p_2_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E"
@@ -106,13 +105,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="104dp"
                 android:src="@drawable/remove_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_2_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.491" />
+                app:layout_constraintVertical_bias="0.51" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -135,7 +133,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fairway_p_2">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/fairway_p_3_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Player 3"
@@ -147,7 +145,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/fairway_p_3_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E"
@@ -161,11 +159,10 @@
                 android:id="@+id/imageView"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="104dp"
                 android:src="@drawable/remove_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_3_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.491" />
 
@@ -190,7 +187,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fairway_p_3">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/fairway_p_4_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Player 4"
@@ -202,7 +199,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/fairway_p_4_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E"
@@ -216,11 +213,10 @@
                 android:id="@+id/imageView"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="104dp"
                 android:src="@drawable/remove_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_4_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.491" />
 
@@ -247,7 +243,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fairway_p_4">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/fairway_p_5_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Player 5"
@@ -259,7 +255,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/fairway_p_5_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E"
@@ -273,11 +269,10 @@
                 android:id="@+id/imageView"
                 android:layout_width="49dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="104dp"
                 android:src="@drawable/remove_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fairway_p_5_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.491" />
 
@@ -468,6 +463,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:gravity="center"
             android:inputType="number"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="parent"
