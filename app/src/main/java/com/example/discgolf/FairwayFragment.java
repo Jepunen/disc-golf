@@ -10,12 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +31,7 @@ import com.example.discgolf.ser.Player;
 import com.example.discgolf.ser.Serialize;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -33,6 +39,8 @@ public class FairwayFragment extends Fragment {
 
     TabLayout tabLayout;
     Spinner parSpinner;
+
+    EditText fairwayLength;
 
     TextView playerName1;
     TextView playerName2;
@@ -64,6 +72,11 @@ public class FairwayFragment extends Fragment {
     ImageView playerScoreRemove4;
     ImageView playerScoreRemove5;
 
+    ConstraintLayout mainConstraint;
+    ConstraintLayout playerConstraint;
+    ConstraintLayout parConstraint;
+    ConstraintLayout lengthConstraint;
+
     ConstraintLayout player1;
     ConstraintLayout player2;
     ConstraintLayout player3;
@@ -89,9 +102,16 @@ public class FairwayFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_fairway, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        fairwayLength = view.findViewById(R.id.editTextNumber);
+        mainConstraint = view.findViewById(R.id.main_constraint);
+        playerConstraint = view.findViewById(R.id.players_container);
+        parConstraint = view.findViewById(R.id.par_constraint);
+        lengthConstraint = view.findViewById(R.id.length_constraint);
 
         parSpinner  = view.findViewById(R.id.fairway_par_spinner);
         playerName1 = view.findViewById(R.id.fairway_p_1_name);
@@ -132,6 +152,7 @@ public class FairwayFragment extends Fragment {
 
         saveScorecard = view.findViewById(R.id.fairway_save_scorecard);
         playerThrowOrder = view.findViewById(R.id.player_throw_order);
+        playerThrowOrder.setVisibility(View.GONE);
 
         playerData = requireActivity().getSharedPreferences("player_data", Context.MODE_PRIVATE);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, getResources().getStringArray(R.array.pars));
@@ -156,6 +177,8 @@ public class FairwayFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tab_layout);
         int finalSelectedCourse = selectedCourse;
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            int currTab = 0;
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 ((MainActivity)requireActivity()).setTitle(courses.get(finalSelectedCourse).getName()
@@ -167,6 +190,12 @@ public class FairwayFragment extends Fragment {
                 updateScores(playerThrows3, playerScore3, playerTotal3);
                 updateScores(playerThrows4, playerScore4, playerTotal4);
                 updateScores(playerThrows5, playerScore5, playerTotal5);
+                if ( courses.get(finalSelectedCourse).getSavedPars().get(tab.getPosition()).getLength() != 0 ) {
+                    fairwayLength.setText(Integer.toString(courses.get(finalSelectedCourse).getSavedPars().get(tab.getPosition()).getLength()));
+                } else {
+                    fairwayLength.setText("");
+                    fairwayLength.setHint("0");
+                }
 
                 parSpinner.setSelection(fairways.get(tab.getPosition()).getPar());
 
@@ -177,7 +206,19 @@ public class FairwayFragment extends Fragment {
                     saveScorecard.setVisibility(View.GONE);
                     playerThrowOrder.setVisibility(View.VISIBLE);
                 }
-                startingOrder(tab.getPosition() - 1);
+                if ( playerData.getInt("amount_of_players", 0) > 1 && tab.getPosition() != 0 ) {
+                    startingOrder(tab.getPosition() - 1);
+                    playerThrowOrder.setVisibility(View.VISIBLE);
+                } else {
+                    playerThrowOrder.setVisibility(View.GONE);
+                }
+                fairwayLength.clearFocus();
+                if ( tab.getPosition() < currTab ) {
+                    animateContainerRight(playerConstraint);
+                } else {
+                    animateContainerLeft(playerConstraint);
+                }
+                currTab = tab.getPosition();
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -235,6 +276,42 @@ public class FairwayFragment extends Fragment {
             player5.setVisibility(View.GONE);
         }
 
+        fairwayLength.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    courses.get(finalSelectedCourse).getSavedPars().get(tabLayout.getSelectedTabPosition()).setLength(Integer.parseInt(fairwayLength.getText().toString()));
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    courses.get(finalSelectedCourse).getSavedPars().get(tabLayout.getSelectedTabPosition()).setLength(0);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+
+        mainConstraint.setOnTouchListener(new OnSwipeTouchListener(getContext()){
+
+            public void onSwipeRight() {
+                if ( tabLayout.getSelectedTabPosition() > 0 ) {
+                    animateContainerRight(playerConstraint);
+                }
+                TabLayout.Tab tab = tabLayout.getTabAt(tabLayout.getSelectedTabPosition() - 1);
+                tabLayout.selectTab(tab);
+            }
+            public void onSwipeLeft() {
+                if ( tabLayout.getSelectedTabPosition() < tabLayout.getTabCount() - 1 ) {
+                    animateContainerLeft(playerConstraint);
+                }
+                TabLayout.Tab tab = tabLayout.getTabAt(tabLayout.getSelectedTabPosition() + 1);
+                tabLayout.selectTab(tab);
+            }
+        });
+
         playerScoreAdd1.setOnClickListener(view1 -> {
             addScore(playerThrows1);
             updateScores(playerThrows1, playerScore1, playerTotal1);
@@ -277,8 +354,6 @@ public class FairwayFragment extends Fragment {
             updateScores(playerThrows5, playerScore5, playerTotal5);
         });
 
-        startingOrder(4);
-
         parSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -316,6 +391,62 @@ public class FairwayFragment extends Fragment {
             if (playerThrows5 != null) {
                 String p5Name = playerData.getString("player_5_name", "Player 5");
                 players.add(new Player(p5Name, playerThrows5));
+            }
+
+            ArrayList<Course> playedCourses = new ArrayList<>();
+
+            @SuppressLint("SdCardPath") File f = new File("/data/data/com.example.discgolf/files/played_courses");
+            if(!f.exists() && !f.isDirectory()) {
+                Serialize.instance.serializeData(requireActivity().getApplicationContext(),"played_courses", playedCourses);
+            }
+            playedCourses = Serialize.instance.deSerializeData(requireContext(), "played_courses");
+            playedCourses.add(new Course(courses.get(finalSelectedCourse).getName(), 18, fairways, players));
+            Serialize.instance.serializeData(requireContext(), "played_courses", playedCourses);
+            ((MainActivity)requireActivity()).setTitle("Home");
+            ((MainActivity)requireActivity()).goToFragment(new HomeFragment());
+        });
+    }
+
+    private void animateContainerLeft(ConstraintLayout container) {
+        Animation animationStart = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left_out);
+        container.startAnimation(animationStart);
+        animationStart.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Animation animationEnd = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_in);
+                container.startAnimation(animationEnd);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    private void animateContainerRight(ConstraintLayout container) {
+        Animation animationStart = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_out);
+        container.startAnimation(animationStart);
+        animationStart.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Animation animationEnd = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_left_in);
+                container.startAnimation(animationEnd);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
             }
         });
     }
@@ -357,7 +488,6 @@ public class FairwayFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void startingOrder(int hole) {
 
-        int amountOfPlayers = playerData.getInt("amount_of_players", 0);
         String p1Name = playerData.getString("player_1_name", "Player 1");
         String p2Name = playerData.getString("player_2_name", "Player 2");
         String p3Name = playerData.getString("player_3_name", "Player 3");
@@ -391,7 +521,7 @@ public class FairwayFragment extends Fragment {
         for (int i=0; i<playerThrows.size(); i++) {
             playerIndexZeroThrows = playerThrows.get(0).getFairways().get(hole).getThrowsTaken();
             lowestThrow = playerIndexZeroThrows;
-            indexLowestOfThrow = i;
+            indexLowestOfThrow = 0;
             for (int n=1; n<playerThrows.size(); n++) {
                 if (playerThrows.get(n).getFairways().get(hole).getThrowsTaken() < lowestThrow) {
                     lowestThrow = playerThrows.get(n).getFairways().get(hole).getThrowsTaken();
@@ -399,13 +529,18 @@ public class FairwayFragment extends Fragment {
                 }
                 else if (playerThrows.get(n).getFairways().get(hole).getThrowsTaken() == lowestThrow) {
                     for ( int t=1; t<hole; t++ ) {
-                        if ( playerThrows.get(n).getFairways().get(hole - t).getThrowsTaken() < playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken()) {
-                            lowestThrow = playerThrows.get(n).getFairways().get(hole).getThrowsTaken();
-                            indexLowestOfThrow = n;
-                        } else if ( playerThrows.get(n).getFairways().get(hole - t).getThrowsTaken() > playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken() ) {
-                            lowestThrow = playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken();
+                        if ( playerThrows.get(n).getFairways().get(hole - t).getThrowsTaken() != 0 ) {
+                            if ( playerThrows.get(n).getFairways().get(hole - t).getThrowsTaken() < playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken()) {
+                                lowestThrow = playerThrows.get(n).getFairways().get(hole).getThrowsTaken();
+                                indexLowestOfThrow = n;
+                            } else if ( playerThrows.get(n).getFairways().get(hole - t).getThrowsTaken() > playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken() ) {
+                                lowestThrow = playerThrows.get(indexLowestOfThrow).getFairways().get(hole - t).getThrowsTaken();
+                            }
                         }
                     }
+                } else {
+                    indexLowestOfThrow = 0;
+                    lowestThrow = playerIndexZeroThrows;
                 }
             }
             startingOrder.add(playerThrows.get(indexLowestOfThrow).getName());
@@ -414,7 +549,7 @@ public class FairwayFragment extends Fragment {
         startingOrder.add(playerThrows.get(0).getName());
         StringBuilder throwOrderText = new StringBuilder();
         for ( String s : startingOrder ) {
-            throwOrderText.append(s + " ");
+            throwOrderText.append(s).append(" ");
         }
         playerThrowOrder.setText(throwOrderText);
 

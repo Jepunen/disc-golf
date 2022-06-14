@@ -11,6 +11,7 @@ public class Fairway implements Serializable {
 
     public Fairway(int par) {
         this.par = par;
+        this.length = 0;
     }
 
     public Fairway(int fairwayNumber, int par, int throwsTaken, int length) {

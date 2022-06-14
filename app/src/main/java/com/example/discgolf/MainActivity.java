@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         goToFragment(new HomeFragment());
+        setTitle("Home");
     }
 
     public void setTitle(String title) {

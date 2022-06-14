@@ -1,7 +1,11 @@
 package com.example.discgolf.ser;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Course implements Serializable {
 
@@ -9,12 +13,17 @@ public class Course implements Serializable {
     int amountOfHoles;
     ArrayList<Fairway> savedPars;
     ArrayList<Player> players;
+    String date;
+    boolean isExpanded;
 
     public Course(String name, int amountOfHoles, ArrayList<Fairway> savedPars, ArrayList<Player> players) {
         this.name = name;
         this.amountOfHoles = amountOfHoles;
         this.savedPars = savedPars;
         this.players = players;
+        Calendar cal = Calendar.getInstance(); // Save as object created
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        this.date = date.format(cal.getTime());
     }
 
     public Course() {
@@ -50,5 +59,14 @@ public class Course implements Serializable {
     }
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
+    }
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+    public String getDate() {
+        return this.date;
     }
 }

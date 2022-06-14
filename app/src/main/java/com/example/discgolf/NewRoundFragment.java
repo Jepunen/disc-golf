@@ -147,26 +147,35 @@ public class NewRoundFragment extends Fragment {
         addPlayerConstraint5 = view.findViewById(R.id.player_5_constraint);
 
         addPlayer.setOnClickListener(view1 -> {
+            playerName_1.clearFocus();
             addPlayer.setVisibility(View.GONE);
             addPlayer2.setVisibility(View.VISIBLE);
+            playerName_2.requestFocus();
             addPlayerConstraint2.setVisibility(View.VISIBLE);
             amountOfPlayers = 2;
         });
         addPlayer2.setOnClickListener(view1 -> {
+            playerName_2.clearFocus();
             addPlayer2.setVisibility(View.GONE);
             addPlayer3.setVisibility(View.VISIBLE);
+            playerName_3.requestFocus();
             addPlayerConstraint3.setVisibility(View.VISIBLE);
             amountOfPlayers = 3;
         });
         addPlayer3.setOnClickListener(view1 -> {
+            playerName_3.clearFocus();
             addPlayer3.setVisibility(View.GONE);
             addPlayer4.setVisibility(View.VISIBLE);
+            playerName_4.requestFocus();
             addPlayerConstraint4.setVisibility(View.VISIBLE);
             amountOfPlayers = 4;
         });
         addPlayer4.setOnClickListener(view1 -> {
+            playerName_4.clearFocus();
             addPlayer4.setVisibility(View.GONE);
             addPlayerConstraint5.setVisibility(View.VISIBLE);
+            playerName_5.requestFocus();
+            playerName_5.requestFocus();
             amountOfPlayers = 5;
         });
     }
