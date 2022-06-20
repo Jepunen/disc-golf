@@ -1,4 +1,4 @@
-# Discgolf
+# Disc golf
 
 Jere Puurunen
 
